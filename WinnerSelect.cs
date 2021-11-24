@@ -83,31 +83,43 @@ namespace TrainBrainScoreBoard
          */
         private void WinnerSelect_KeyDown(object sender, KeyEventArgs e)
         {
-
-            if (e.KeyCode == Keys.Up)
+            switch (e.KeyCode)
             {
-                if (Storage.maxWinnersCount <= currentIteration) return;
-
-                if(numberTickTimerState)
-                {
-                    numberTickTimer.Stop();
-                    winnerText.Visible = true;
-                    numberTickTimerState = false;
-
-                    if(Storage.maxWinnersCount > currentIteration)
+                case Keys.Up:
+                    if (Storage.maxWinnersCount <= currentIteration) break;
+                    if (numberTickTimerState)
                     {
-                        exceptFromRandomGenerator.Add(int.Parse(numberLabel.Tag.ToString()));
-                        currentIteration += 1;
+                        numberTickTimer.Stop();
+                        winnerText.Visible = true;
+                        numberTickTimerState = false;
+
+                        if (Storage.maxWinnersCount > currentIteration)
+                        {
+                            exceptFromRandomGenerator.Add(int.Parse(numberLabel.Tag.ToString()));
+                            currentIteration += 1;
+                        }
+
+                        break;
                     }
-                } else
-                {
+
                     numberLabel.Visible = true;
                     winnerText.Visible = false;
 
                     numberTickTimer.Stop();
                     numberTickTimer.Start();
                     numberTickTimerState = true;
-                }
+
+                    break;
+
+                // Если нажата клавиша F11, изменить состояние окна
+                case Keys.F11:
+                    bool sizableState = Storage.WinnerSelect.FormBorderStyle == FormBorderStyle.Sizable;
+
+                    Storage.WinnerSelect.FormBorderStyle = sizableState ? FormBorderStyle.None : FormBorderStyle.Sizable;
+                    Storage.WinnerSelect.WindowState = sizableState ? FormWindowState.Maximized : FormWindowState.Normal;
+
+                    Refresh();
+                    break;
             }
         }
 
