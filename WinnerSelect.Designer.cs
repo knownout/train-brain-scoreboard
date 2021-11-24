@@ -81,7 +81,6 @@ namespace TrainBrainScoreBoard
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WinnerSelect_FormClosing);
             this.VisibleChanged += new System.EventHandler(this.WinnerSelect_VisibleChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WinnerSelect_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.WinnerSelect_KeyPress);
             this.ResumeLayout(false);
 
         }

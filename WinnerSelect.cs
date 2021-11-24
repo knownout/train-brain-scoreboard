@@ -6,100 +6,117 @@ namespace TrainBrainScoreBoard
 {
     public partial class WinnerSelect : Form
     {
-        private Timer _timer;
-        private bool _timer_state = false;
+        // Таймер обновления случайного числа
+        private Timer numberTickTimer;
 
-        private int _iteration = 0;
+        // Текущее состояние таймера
+        private bool numberTickTimerState = false;
 
-        private List<int> except;
+        // Текущая итерация формы
+        private int currentIteration = 0;
+
+        // Исключения из генератора случайных чисел (для выбора нескольких победителей)
+        private List<int> exceptFromRandomGenerator;
+
+        private static readonly Random rand = new();
 
         public WinnerSelect()
         {
             InitializeComponent();
+
+            DoubleBuffered = true;
+
             numberLabel.Visible = false;
             winnerText.Visible = false;
 
-            DoubleBuffered = true;
             numberLabel.Tag = 0;
-            except = new();
 
-            _timer = new Timer()
+            exceptFromRandomGenerator = new();
+
+            numberTickTimer = new Timer()
             {
                 Enabled = false,
+
+                // Время между тиками таймера в миллисекундах
                 Interval = 150
             };
 
-            _timer.Tick += (object sender, EventArgs e) =>
+            // Функция генерации случайных чисел на каждый тик таймера
+            numberTickTimer.Tick += (object sender, EventArgs e) =>
             {
-                int nextVal = rand.Next(1, Storage.winners_total + 1);
+                int nextVal = rand.Next(1, Storage.teamsCount + 1);
 
-                while (nextVal == int.Parse(numberLabel.Tag.ToString()) || except.Contains(nextVal))
-                    nextVal = rand.Next(1, Storage.winners_total + 1);
+                while (nextVal == int.Parse(numberLabel.Tag.ToString()) || exceptFromRandomGenerator.Contains(nextVal))
+                    nextVal = rand.Next(1, Storage.teamsCount + 1);
 
-                if(Storage.replaceNum_withName)
+                if(Storage.replaceRandomNumbersWithTeamNames)
                 {
                     numberLabel.Text = Storage.workTable.Rows[nextVal].ItemArray[0].ToString();
                 } else numberLabel.Text = nextVal.ToString();
 
                 numberLabel.Tag = nextVal;
             };
+
+            KeyPress += (s, e) => { if (e.KeyChar == (char)Keys.Escape) Close(); };
         }
 
         private void WinnerSelect_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Отмена нативного события
             e.Cancel = true;
 
-            _iteration = 0;
-            _timer_state = false;
-            _timer.Stop();
-            except = new();
+            // Сброс значений
+            currentIteration = 0;
+            numberTickTimerState = false;
+            numberTickTimer.Stop();
+            exceptFromRandomGenerator = new();
 
             numberLabel.Visible = false;
             winnerText.Visible = false;
 
+            // Сокрытие формы
             Hide();
         }
 
-        private void WinnerSelect_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Escape) Close();
-        }
-
-
-        private static Random rand = new Random();
+        /**
+         * Обработчик события нажатия на кнопку
+         */
         private void WinnerSelect_KeyDown(object sender, KeyEventArgs e)
         {
 
             if (e.KeyCode == Keys.Up)
             {
-                if (Storage.winners_max <= _iteration) return;
+                if (Storage.maxWinnersCount <= currentIteration) return;
 
-                if(_timer_state)
+                if(numberTickTimerState)
                 {
-                    _timer.Stop();
+                    numberTickTimer.Stop();
                     winnerText.Visible = true;
-                    _timer_state = false;
+                    numberTickTimerState = false;
 
-                    if(Storage.winners_max > _iteration)
+                    if(Storage.maxWinnersCount > currentIteration)
                     {
-                        except.Add(int.Parse(numberLabel.Tag.ToString()));
-                        _iteration += 1;
+                        exceptFromRandomGenerator.Add(int.Parse(numberLabel.Tag.ToString()));
+                        currentIteration += 1;
                     }
                 } else
                 {
                     numberLabel.Visible = true;
                     winnerText.Visible = false;
 
-                    _timer.Stop();
-                    _timer.Start();
-                    _timer_state = true;
+                    numberTickTimer.Stop();
+                    numberTickTimer.Start();
+                    numberTickTimerState = true;
                 }
             }
         }
 
+        /**
+         * Обновление размера шрифта для разных типов отображения
+         */
         private void WinnerSelect_VisibleChanged(object sender, EventArgs e)
         {
-            if (Storage.replaceNum_withName)
+            if (Storage.replaceRandomNumbersWithTeamNames)
                 numberLabel.Font = new System.Drawing.Font(numberLabel.Font.FontFamily, 64.0f, numberLabel.Font.Style);
         }
     }

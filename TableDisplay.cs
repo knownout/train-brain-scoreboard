@@ -12,40 +12,67 @@ namespace TrainBrainScoreBoard
 {
     public partial class TableDisplay : Form
     {
+        #pragma warning disable CA2211
+
         public static int teamShowIndex = 0;
-        private Font font = new("Segoe UI", 14.0f, FontStyle.Bold);
-        private SolidBrush whiteBrush = new SolidBrush(Color.White);
         List<int> randomOrder_shownIndexes = new();
+        Random rand = new();
+
+        // Стандартный шрифт
+        private readonly Font font = new("Segoe UI", 14.0f, FontStyle.Bold);
+
+        // Стандартная белая кисть
+        private readonly SolidBrush whiteBrush = new(Color.White);
+
+        #pragma warning restore CA2211
 
         public TableDisplay()
         {
             InitializeComponent();
+
             DoubleBuffered = true;
 
-            SetStyle(ControlStyles.UserPaint |
-                ControlStyles.AllPaintingInWmPaint |
-                ControlStyles.OptimizedDoubleBuffer,
-                true
-            );
+            /**
+             * Процедура отрисовки элемента данных таблицы команд
+             */
+            Func<bool> redrawTableEntries = () =>
+            {
+                Refresh();
+                for (int i = 0; i < teamShowIndex; i++)
+                    DrawTableEntries(CreateGraphics(), getRelativeWidth(Width), i);
+
+                return true;
+            };
+
+            /**
+             * Добавление обработчиков событий
+             */
 
             KeyPress += (s, e) => { if (e.KeyChar == (char)Keys.Escape) Close(); };
-            FormClosing += (s, e) =>
+            FormClosing += (s, e) =>  { e.Cancel = true; teamShowIndex = 0; Hide(); };
+            Shown += (e, s) => { teamShowIndex = 0; randomOrder_shownIndexes = new(); };
+            ResizeEnd += (e, s) => redrawTableEntries();
+
+            Resize += (e, s) =>
             {
-                e.Cancel = true;
-                teamShowIndex = 0;
-                Hide();
+                if (Storage.fullscreenFormsRealtimeUpdate) redrawTableEntries();
             };
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        /**
+         * Метод отрисовки градиента и названия текущей игры
+         */
+        private void GradientPanelPaint(object sender, PaintEventArgs e)
         {
+            // Отрисовка градиента как фона панели
             System.Drawing.Drawing2D.LinearGradientBrush linearGradientBrush = new(new Point(0, 0), new Point(e.ClipRectangle.Width, e.ClipRectangle.Height), 
                 Color.FromArgb(255, 27, 27, 39), 
                 Color.FromArgb(255, 112, 18, 19));
 
             e.Graphics.FillRectangle(linearGradientBrush, new Rectangle(0, 0, e.ClipRectangle.Width, e.ClipRectangle.Height));
 
-            StringFormat format = new StringFormat();
+            // Отрисовка текста названия текущей игры
+            StringFormat format = new();
             format.LineAlignment = StringAlignment.Center;
             format.Alignment = StringAlignment.Center;
 
@@ -59,29 +86,62 @@ namespace TrainBrainScoreBoard
             );
         }
 
-        private void TableDisplay_Paint(object sender, PaintEventArgs e)
+        /**
+         * Отрисовка ячеек таблицы и заголовка на форме
+         */
+        private void FormPaint(object sender, PaintEventArgs e)
         {
+            // Общее кол-во строк таблицы
             int totalRows = Storage.workTable.Rows.Count;
 
-            double rawRowHeight = (ClientRectangle.Height - panel2.Height) / totalRows;
+            double rawRowHeight = (ClientRectangle.Height - gradientPanel.Height) / totalRows;
+
+            // Высота одной строки
             int rowHeight = (int)Math.Round(rawRowHeight, MidpointRounding.AwayFromZero);
 
-            panel1.Height = rowHeight;
+            // Измененме высоты заголовка таблицы
+            tableHeaderPanel.Height = rowHeight;
 
-            var darkBrush = new SolidBrush(Color.FromArgb(10, 10, 10, 10));
-            var whiteBrush = new SolidBrush(Color.White);
+            // Создание кистей
+            SolidBrush darkTransparentBrush = new(Color.FromArgb(10, 10, 10, 10));
+            SolidBrush whiteBrush = new(Color.White);
 
-            //e.Graphics.FillRectangle(whiteBrush, new Rectangle(0, 0, e.ClipRectangle.Width, e.ClipRectangle.Height));
+            // Отрисовка ячеек
             for(int i = 1; i < totalRows; i++)
             {
-                int relativeHeight = panel1.Height + panel2.Height + (rowHeight * (i - 1));
+                int relativeHeight = tableHeaderPanel.Height + gradientPanel.Height + (rowHeight * (i - 1));
                 int h = rowHeight;
                 if (i == totalRows - 1) h = Height - relativeHeight;
 
-                e.Graphics.FillRectangle(i % 2 == 0 ? darkBrush : whiteBrush, new Rectangle(0, relativeHeight, Width, h));
+                e.Graphics.FillRectangle(i % 2 == 0 ? darkTransparentBrush : whiteBrush, new Rectangle(0, relativeHeight, Width, h));
             }
         }
 
+        /**
+         * Метод отрисовки заголовков таблицы
+         */
+        private void TableHeaderPaint(object sender, PaintEventArgs e)
+        {
+            List<int> relative = getRelativeWidth(Width);
+
+            e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+
+            StringFormat format = new();
+            format.LineAlignment = StringAlignment.Center;
+            format.Alignment = StringAlignment.Center;
+
+            e.Graphics.DrawString("Команды", font, whiteBrush, new RectangleF(0, 0, relative[2], e.ClipRectangle.Height), format);
+
+            for (int i = 0; i < relative[1]; i++)
+                e.Graphics.DrawString($"{i + 1}", font, whiteBrush, new RectangleF(relative[2] + (relative[0] * i), 0, relative[0], e.ClipRectangle.Height), format);
+
+            e.Graphics.DrawString("Очки", font, whiteBrush, new RectangleF(e.ClipRectangle.Width - relative[3] * 2, 0, relative[3], e.ClipRectangle.Height), format);
+            e.Graphics.DrawString("Место", font, whiteBrush, new RectangleF(e.ClipRectangle.Width - relative[3], 0, relative[3], e.ClipRectangle.Height), format);
+        }
+
+        /**
+         * Метод для получения ширины строк таблицы команд
+         */
         private List<int> getRelativeWidth (int totalWidth)
         {
             // Контейнер значений ширины элементов
@@ -112,33 +172,16 @@ namespace TrainBrainScoreBoard
             return relativeWidth;
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        /**
+         * Обработчик события нажатия на кнопку
+         */
+        private void KeyDownEventHandler(object sender, KeyEventArgs e)
         {
             List<int> relative = getRelativeWidth(Width);
-
-            e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-
-            StringFormat format = new StringFormat();
-            format.LineAlignment = StringAlignment.Center;
-            format.Alignment = StringAlignment.Center;
-
-            e.Graphics.DrawString("Команды", font, whiteBrush, new RectangleF(0, 0, relative[2], e.ClipRectangle.Height), format);
-
-            for(int i = 0; i < relative[1]; i++)
-                e.Graphics.DrawString($"{i + 1}", font, whiteBrush, new RectangleF(relative[2] + (relative[0] * i), 0, relative[0], e.ClipRectangle.Height), format);
-
-            e.Graphics.DrawString("Очки", font, whiteBrush, new RectangleF(e.ClipRectangle.Width - relative[3] * 2, 0, relative[3], e.ClipRectangle.Height), format);
-            e.Graphics.DrawString("Место", font, whiteBrush, new RectangleF(e.ClipRectangle.Width - relative[3], 0, relative[3], e.ClipRectangle.Height), format);
-        }
-
-        private void TableDisplay_KeyDown(object sender, KeyEventArgs e)
-        {
-            Graphics g = this.CreateGraphics();
-            List<int> relative = getRelativeWidth(Width);
-            Random rand = new Random();
 
             switch (e.KeyCode)
             {
+                // Если нажата клавиша F11, изменить состояние окна
                 case Keys.F11:
                     bool sizableState = Storage.TableDisplay.FormBorderStyle == FormBorderStyle.Sizable;
 
@@ -146,11 +189,13 @@ namespace TrainBrainScoreBoard
                     Storage.TableDisplay.WindowState = sizableState ? FormWindowState.Maximized : FormWindowState.Normal;
 
                     Refresh();
-                    for (int i = 0; i < teamShowIndex; i++) drawFormData(CreateGraphics(), getRelativeWidth(Width), i);
+                    for (int i = 0; i < teamShowIndex; i++) DrawTableEntries(CreateGraphics(), getRelativeWidth(Width), i);
+
                     break;
 
+                // Отобразить следующую команду
                 case Keys.Up:
-                    if(Storage.tableOpen_randomOrder)
+                    if(Storage.teamsShowInRandomOreder)
                     {
                         if (randomOrder_shownIndexes.Count >= Storage.workTable.Rows.Count) break;
                         int res = rand.Next(0, Storage.workTable.Rows.Count);
@@ -158,24 +203,27 @@ namespace TrainBrainScoreBoard
                         while (randomOrder_shownIndexes.Contains(res))
                             res = rand.Next(0, Storage.workTable.Rows.Count);
 
-                        drawFormData(g, relative, res);
+                        DrawTableEntries(CreateGraphics(), relative, res);
                         randomOrder_shownIndexes.Add(res);
+
                         break;
                     }
 
                     if (teamShowIndex == Storage.workTable.Rows.Count - 1) break;
-                    drawFormData(g, relative, teamShowIndex);
+                    DrawTableEntries(CreateGraphics(), relative, teamShowIndex);
                     teamShowIndex += 1;
+
                     break;
 
+                // Скрыть отображенную команду (шаг назад)
                 case Keys.Down:
-                    if (Storage.tableOpen_randomOrder)
+                    if (Storage.teamsShowInRandomOreder)
                     {
                         if (randomOrder_shownIndexes.Count == 0) break;
                         Refresh();
                         randomOrder_shownIndexes.RemoveAt(randomOrder_shownIndexes.Count - 1);
-                        foreach (int index in this.randomOrder_shownIndexes)
-                            drawFormData(g, relative, index);
+                        foreach (int index in randomOrder_shownIndexes)
+                            DrawTableEntries(CreateGraphics(), relative, index);
 
                         break;
                     }
@@ -183,12 +231,17 @@ namespace TrainBrainScoreBoard
                     if (teamShowIndex == 0) break;
                     teamShowIndex -= 1;
                     Refresh();
-                    for (int i = 0; i < teamShowIndex; i++) drawFormData(g, relative, i);
+                    for (int i = 0; i < teamShowIndex; i++) 
+                        DrawTableEntries(CreateGraphics(), relative, i);
+
                     break;
             }
         }
 
-        private void drawFormData (Graphics g, List<int> relative, int index)
+        /**
+         * Метод отрисовки данных таблицы для каждой команды
+         */
+        private void DrawTableEntries (Graphics g, List<int> relative, int index)
         {
             int totalTeams = Storage.workTable.Rows.Count - 1;
 
@@ -201,62 +254,39 @@ namespace TrainBrainScoreBoard
             format.LineAlignment = StringAlignment.Center;
             format.Alignment = StringAlignment.Center;
 
-            int yStartPoint = (panel1.Height + panel2.Height + panel1.Height * relativeTeamIndex) - panel1.Height;
+            int yStartPoint = (tableHeaderPanel.Height + gradientPanel.Height + tableHeaderPanel.Height * relativeTeamIndex) - tableHeaderPanel.Height;
             SolidBrush brush = new SolidBrush(Color.Black);
 
+            // Отрисовка названия команды
             g.DrawString(
-                Storage.workTable.Rows[relativeTeamIndex].ItemArray[0].ToString(), font, brush, new Rectangle(0, yStartPoint, relative[2], panel1.Height), format
+                Storage.workTable.Rows[relativeTeamIndex].ItemArray[0].ToString(), 
+                font, brush, new Rectangle(0, yStartPoint, relative[2], tableHeaderPanel.Height), 
+                format
             );
 
+            // Отрисовка числовых значений
             for (int i = 0; i < Storage.workTable.Columns.Count - 2; i++)
             {
                 g.DrawString(
                     Storage.workTable.Rows[relativeTeamIndex].ItemArray[1 + i].ToString(), new Font(font.FontFamily, font.Size, FontStyle.Regular),
-                    brush, new Rectangle(relative[2] + relative[0] * i, yStartPoint, relative[0], panel1.Height), format
+                    brush, new Rectangle(relative[2] + relative[0] * i, yStartPoint, relative[0], tableHeaderPanel.Height), format
                 );
             }
 
+            // Отрисовка очков
             g.DrawString(
                 Storage.workTable.Rows[relativeTeamIndex].ItemArray[Storage.workTable.Columns.Count - 1].ToString(),
                 new Font(font.FontFamily, font.Size, FontStyle.Regular), brush,
-                new Rectangle((Width - relative[3] * 2), yStartPoint, relative[3], panel1.Height),
+                new Rectangle((Width - relative[3] * 2), yStartPoint, relative[3], tableHeaderPanel.Height),
                 format
             );
 
+            // Отрисовка места
             g.DrawString(
                 relativeTeamIndex.ToString(), font, brush,
-                new Rectangle((Width - relative[3]), yStartPoint, relative[3], panel1.Height),
+                new Rectangle((Width - relative[3]), yStartPoint, relative[3], tableHeaderPanel.Height),
                 format
             );
-        }
-
-        private void TableDisplay_Shown(object sender, EventArgs e)
-        {
-            TableDisplay.teamShowIndex = 0;
-            this.randomOrder_shownIndexes = new();
-        }
-
-        private void TableDisplay_ResizeEnd(object sender, EventArgs e)
-        {
-            Refresh();
-            List<int> relative = getRelativeWidth(Width);
-            for (int i = 0; i < TableDisplay.teamShowIndex; i++)
-            {
-                drawFormData(CreateGraphics(), relative, i);
-            }
-
-        }
-
-        private void TableDisplay_Resize(object sender, EventArgs e)
-        {
-            if (!Storage.realTime_update) return;
-
-            Refresh();
-            List<int> relative = getRelativeWidth(Width);
-            for (int i = 0; i < TableDisplay.teamShowIndex; i++)
-            {
-                drawFormData(CreateGraphics(), relative, i);
-            }
         }
     }
 }

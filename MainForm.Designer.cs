@@ -183,7 +183,6 @@ namespace TrainBrainScoreBoard
             0,
             0,
             0});
-            this.numberSelect_totalWinnersCount.ValueChanged += new System.EventHandler(this.SelectWinnersTotalWinnersCountSelect_ValueChanged);
             // 
             // label_static_totalTeamsListCountLabel
             // 
@@ -212,7 +211,6 @@ namespace TrainBrainScoreBoard
             0,
             0,
             0});
-            this.numberSelect_totalTeams.ValueChanged += new System.EventHandler(this.SelectWinnersTotalTeamsCountSelect_ValueChanged);
             // 
             // buttons_randomSelectWinners
             // 
