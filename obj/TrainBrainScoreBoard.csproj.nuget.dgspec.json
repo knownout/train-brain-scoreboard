@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\sources\\TrainBrainScoreBoard\\TrainBrainScoreBoard.csproj": {}
+    "D:\\sources\\train-brain-scoreboard\\TrainBrainScoreBoard.csproj": {}
   },
   "projects": {
-    "D:\\sources\\TrainBrainScoreBoard\\TrainBrainScoreBoard.csproj": {
+    "D:\\sources\\train-brain-scoreboard\\TrainBrainScoreBoard.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\sources\\TrainBrainScoreBoard\\TrainBrainScoreBoard.csproj",
+        "projectUniqueName": "D:\\sources\\train-brain-scoreboard\\TrainBrainScoreBoard.csproj",
         "projectName": "TrainBrainScoreBoard",
-        "projectPath": "D:\\sources\\TrainBrainScoreBoard\\TrainBrainScoreBoard.csproj",
+        "projectPath": "D:\\sources\\train-brain-scoreboard\\TrainBrainScoreBoard.csproj",
         "packagesPath": "C:\\Users\\slav\\.nuget\\packages\\",
-        "outputPath": "D:\\sources\\TrainBrainScoreBoard\\obj\\",
+        "outputPath": "D:\\sources\\train-brain-scoreboard\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\slav\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -47,6 +47,10 @@
             "ExcelDataReader.DataSet": {
               "target": "Package",
               "version": "[3.6.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
             },
             "System.Text.Encoding.CodePages": {
               "target": "Package",

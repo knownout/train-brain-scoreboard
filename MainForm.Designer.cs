@@ -36,6 +36,7 @@ namespace TrainBrainScoreBoard
             this.label_static_teamsCountDescription = new System.Windows.Forms.Label();
             this.label_teamsCount = new System.Windows.Forms.Label();
             this.groupBox_controlsGroup = new System.Windows.Forms.GroupBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.checkBox_replaceNumberWithTeamName = new System.Windows.Forms.CheckBox();
             this.label_static_f11KeyInfo = new System.Windows.Forms.Label();
             this.label_static_escKeyInfo = new System.Windows.Forms.Label();
@@ -99,8 +100,9 @@ namespace TrainBrainScoreBoard
             this.label_teamsCount.TabIndex = 3;
             this.label_teamsCount.Text = "N/a";
             // 
-            // groupBox1
+            // groupBox_controlsGroup
             // 
+            this.groupBox_controlsGroup.Controls.Add(this.linkLabel1);
             this.groupBox_controlsGroup.Controls.Add(this.checkBox_replaceNumberWithTeamName);
             this.groupBox_controlsGroup.Controls.Add(this.label_static_f11KeyInfo);
             this.groupBox_controlsGroup.Controls.Add(this.label_static_escKeyInfo);
@@ -114,11 +116,22 @@ namespace TrainBrainScoreBoard
             this.groupBox_controlsGroup.Controls.Add(this.label_selectedTableGameName);
             this.groupBox_controlsGroup.Controls.Add(this.button_showTeamsTable);
             this.groupBox_controlsGroup.Location = new System.Drawing.Point(12, 182);
-            this.groupBox_controlsGroup.Name = "groupBox1";
+            this.groupBox_controlsGroup.Name = "groupBox_controlsGroup";
             this.groupBox_controlsGroup.Size = new System.Drawing.Size(441, 228);
             this.groupBox_controlsGroup.TabIndex = 5;
             this.groupBox_controlsGroup.TabStop = false;
             this.groupBox_controlsGroup.Text = "Управление";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(353, 206);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(82, 15);
+            this.linkLabel1.TabIndex = 12;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "О программе";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // checkBox_replaceNumberWithTeamName
             // 
@@ -265,12 +278,12 @@ namespace TrainBrainScoreBoard
             this.label_static_selectMonitorLabel.TabIndex = 6;
             this.label_static_selectMonitorLabel.Text = "Монитор для отображения полноэкранных форм";
             // 
-            // comboBox1
+            // comboBox_displayMonitorSelect
             // 
             this.comboBox_displayMonitorSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_displayMonitorSelect.FormattingEnabled = true;
             this.comboBox_displayMonitorSelect.Location = new System.Drawing.Point(184, 69);
-            this.comboBox_displayMonitorSelect.Name = "comboBox1";
+            this.comboBox_displayMonitorSelect.Name = "comboBox_displayMonitorSelect";
             this.comboBox_displayMonitorSelect.Size = new System.Drawing.Size(269, 23);
             this.comboBox_displayMonitorSelect.TabIndex = 7;
             this.toolTip.SetToolTip(this.comboBox_displayMonitorSelect, "Монитор, на котором будет отображена \r\nследующая открытая полноэкранная форма");
@@ -317,7 +330,7 @@ namespace TrainBrainScoreBoard
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(468, 422);
+            this.ClientSize = new System.Drawing.Size(468, 423);
             this.Controls.Add(this.label_static_cpuUsageWarning);
             this.Controls.Add(this.checkBox_changeFullscreenFormsRealtimeUpdate);
             this.Controls.Add(this.checkBox_fullscreenFormsWindowedDisplay);
@@ -332,6 +345,7 @@ namespace TrainBrainScoreBoard
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TBSB Параметры";
             this.groupBox_controlsGroup.ResumeLayout(false);
             this.groupBox_controlsGroup.PerformLayout();
@@ -375,6 +389,7 @@ namespace TrainBrainScoreBoard
         private System.Windows.Forms.CheckBox checkBox_replaceNumberWithTeamName;
 
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 

@@ -1,11 +1,20 @@
 using System;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Net;
+using Newtonsoft.Json.Linq;
 
 namespace TrainBrainScoreBoard
 {
     static class Program
     {
+        // При изменении версии необходимо изменять ее тут, иначе
+        // программа будет пытаться обновиться при каждом запуске
+        public static string CurrentProgrammVersion = "1.2.0";
+
+        public static string LatestProgrammVersion = "N/a";
+        public static string UpdateDownloadURL = "null";
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -15,7 +24,19 @@ namespace TrainBrainScoreBoard
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            if (System.IO.File.Exists(@"update.bat"))
+                System.IO.File.Delete(@"update.bat");
+
+            WebClient wc = new();
+            wc.Headers.Add("user-agent", "request");
+
+            JObject json = JObject.Parse(wc.DownloadString("https://api.github.com/repos/re-knownout/train-brain-scoreboard/releases/latest"));
+            LatestProgrammVersion = json["tag_name"].ToString().Replace("v", "");
+            UpdateDownloadURL = json["assets"][0]["browser_download_url"].ToString();
+
+            if (CurrentProgrammVersion == LatestProgrammVersion) Application.Run(new MainForm());
+            else Application.Run(new AppUpdater());
         }
     }
 
@@ -59,10 +80,12 @@ namespace TrainBrainScoreBoard
          */
 
         // Форма отображения команд
-        public static Form TableDisplay = new TableDisplay();
+        public static TableDisplay TableDisplay = new();
 
         // Форма выбора случайного (случайных) победителя
-        public static Form WinnerSelect = new WinnerSelect();
+        public static WinnerSelect WinnerSelect = new();
+
+        public static About About = new();
 
         /*
          * Числовые переменные

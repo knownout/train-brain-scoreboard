@@ -265,5 +265,10 @@ namespace TrainBrainScoreBoard
             Storage.WinnerSelect.WindowState = FormWindowState.Normal;
             Storage.WinnerSelect.WindowState = FormWindowState.Maximized;
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Storage.About.Show();
+        }
     }
 }

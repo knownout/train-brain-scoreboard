@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "tFW8RlkmXUjNduHPPV/mIHRCEQNs4Wz/GpJlepfWTTU8m3dZE+TuyeMCqVOJJVn2bsqnDqi2GvBf8Ec8QXZzMw==",
+  "dgSpecHash": "pd8m/NcoGcMVImG27yBD4+ryJ+BrwkmBtPwM4PRsZOamsMOcXh3cEhYEAuQu36n1xRvc9gdaPxJOQmpd5TVAgg==",
   "success": true,
-  "projectFilePath": "D:\\sources\\TrainBrainScoreBoard\\TrainBrainScoreBoard.csproj",
+  "projectFilePath": "D:\\sources\\train-brain-scoreboard\\TrainBrainScoreBoard.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\slav\\.nuget\\packages\\exceldatareader\\3.6.0\\exceldatareader.3.6.0.nupkg.sha512",
     "C:\\Users\\slav\\.nuget\\packages\\exceldatareader.dataset\\3.6.0\\exceldatareader.dataset.3.6.0.nupkg.sha512",
+    "C:\\Users\\slav\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\slav\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\slav\\.nuget\\packages\\system.text.encoding.codepages\\6.0.0\\system.text.encoding.codepages.6.0.0.nupkg.sha512"
   ],
