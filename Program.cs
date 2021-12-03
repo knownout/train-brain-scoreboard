@@ -28,15 +28,18 @@ namespace TrainBrainScoreBoard
             if (System.IO.File.Exists(@"update.bat"))
                 System.IO.File.Delete(@"update.bat");
 
-            WebClient wc = new();
-            wc.Headers.Add("user-agent", "request");
+            try
+            {
+                WebClient wc = new();
+                wc.Headers.Add("user-agent", "request");
 
-            JObject json = JObject.Parse(wc.DownloadString("https://api.github.com/repos/re-knownout/train-brain-scoreboard/releases/latest"));
-            LatestProgrammVersion = json["tag_name"].ToString().Replace("v", "");
-            UpdateDownloadURL = json["assets"][0]["browser_download_url"].ToString();
+                JObject json = JObject.Parse(wc.DownloadString("https://api.github.com/repos/re-knownout/train-brain-scoreboard/releases/latest"));
+                LatestProgrammVersion = json["tag_name"].ToString().Replace("v", "");
+                UpdateDownloadURL = json["assets"][0]["browser_download_url"].ToString();
 
-            if (CurrentProgrammVersion == LatestProgrammVersion) Application.Run(new MainForm());
-            else Application.Run(new AppUpdater());
+                if (CurrentProgrammVersion == LatestProgrammVersion) Application.Run(new MainForm());
+                else Application.Run(new AppUpdater());
+            } catch (Exception) { Application.Run(new MainForm()); }
         }
     }
 
