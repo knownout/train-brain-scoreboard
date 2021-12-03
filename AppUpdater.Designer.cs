@@ -133,7 +133,6 @@ namespace TrainBrainScoreBoard
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AppUpdater";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Обновление программы";
             this.ResumeLayout(false);

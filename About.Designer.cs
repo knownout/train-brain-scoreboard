@@ -162,7 +162,6 @@ namespace TrainBrainScoreBoard
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "About";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "О программе";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.About_FormClosing);
