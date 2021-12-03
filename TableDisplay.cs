@@ -14,7 +14,6 @@ namespace TrainBrainScoreBoard
         Random rand = new();
 
         // Стандартный шрифт
-        private readonly Font font = new("Segoe UI", 14.0f, FontStyle.Bold);
 
         // Стандартная белая кисть
         private readonly SolidBrush whiteBrush = new(Color.White);
@@ -118,6 +117,7 @@ namespace TrainBrainScoreBoard
         private void TableHeaderPaint(object sender, PaintEventArgs e)
         {
             List<int> relative = getRelativeWidth(Width);
+            Font font = Storage.defaultFont;
 
             e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
 
@@ -239,6 +239,7 @@ namespace TrainBrainScoreBoard
         private void DrawTableEntries (Graphics g, List<int> relative, int index)
         {
             int totalTeams = Storage.workTable.Rows.Count - 1;
+            Font font = Storage.defaultFont;
 
             int relativeTeamIndex = totalTeams - index;
             if (relativeTeamIndex <= 0 || relativeTeamIndex > totalTeams) return;

@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace TrainBrainScoreBoard
 {
@@ -76,7 +77,9 @@ namespace TrainBrainScoreBoard
         //  ол-во команд в выборе случайного победител€
         public static int teamsCount = 0;
 
-        public static float fontSize = 14.0f;
+        public static Font defaultFont = new("Segoe UI", 14.0f, FontStyle.Bold);
+        public static float minFontSize = 16.0f;
+        public static float maxFontSize = 28.0f;
 
         /*
          * “екстовые переменные (сообщени€, названи€ кнопок/меток и т.д.)

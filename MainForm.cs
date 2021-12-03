@@ -191,6 +191,12 @@ namespace TrainBrainScoreBoard
 
                 // Добавление последней таблицы в хранилище
                 Storage.workTable = dataSet.Tables[dataSet.Tables.Count - 1];
+                float fontSize = (14.0f * 2) / ((Storage.workTable.Rows.Count - 1) / 4);
+
+                Storage.defaultFont = new Font(Storage.defaultFont.FontFamily, fontSize > Storage.maxFontSize 
+                    ? Storage.maxFontSize 
+                    : (fontSize < Storage.minFontSize ? Storage.minFontSize : fontSize), 
+                Storage.defaultFont.Style);
 
                 // Обновление кнопок и меток
                 button_openTableFile.Text = Storage.openFileButton_closeMode;
