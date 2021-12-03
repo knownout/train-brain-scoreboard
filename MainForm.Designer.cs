@@ -347,6 +347,7 @@ namespace TrainBrainScoreBoard
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TBSB Параметры";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.groupBox_controlsGroup.ResumeLayout(false);
             this.groupBox_controlsGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberSelect_totalWinnersCount)).EndInit();

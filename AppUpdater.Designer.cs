@@ -106,6 +106,7 @@ namespace TrainBrainScoreBoard
             this.button2.TabIndex = 6;
             this.button2.Text = "Отложить обновление";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // progressBar1
             // 
@@ -132,8 +133,9 @@ namespace TrainBrainScoreBoard
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AppUpdater";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AppUpdater";
+            this.Text = "Обновление программы";
             this.ResumeLayout(false);
             this.PerformLayout();
 

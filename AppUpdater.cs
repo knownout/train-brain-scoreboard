@@ -69,5 +69,15 @@ namespace TrainBrainScoreBoard
             button1.Enabled = false;
             button2.Enabled = false;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MainForm mainForm = new();
+            mainForm.Show();
+            Hide();
+
+            button1.Enabled = false;
+            button2.Enabled = false;
+        }
     }
 }
