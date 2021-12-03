@@ -76,6 +76,8 @@ namespace TrainBrainScoreBoard
         //  ол-во команд в выборе случайного победител€
         public static int teamsCount = 0;
 
+        public static float fontSize = 14.0f;
+
         /*
          * “екстовые переменные (сообщени€, названи€ кнопок/меток и т.д.)
          */

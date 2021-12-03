@@ -60,11 +60,11 @@ namespace TrainBrainScoreBoard
         private void GradientPanelPaint(object sender, PaintEventArgs e)
         {
             // Отрисовка градиента как фона панели
-            System.Drawing.Drawing2D.LinearGradientBrush linearGradientBrush = new(new Point(0, 0), new Point(e.ClipRectangle.Width, e.ClipRectangle.Height), 
+            /*System.Drawing.Drawing2D.LinearGradientBrush linearGradientBrush = new(new Point(0, 0), new Point(e.ClipRectangle.Width, e.ClipRectangle.Height), 
                 Color.FromArgb(255, 27, 27, 39), 
                 Color.FromArgb(255, 112, 18, 19));
 
-            e.Graphics.FillRectangle(linearGradientBrush, new Rectangle(0, 0, e.ClipRectangle.Width, e.ClipRectangle.Height));
+            e.Graphics.FillRectangle(linearGradientBrush, new Rectangle(0, 0, e.ClipRectangle.Width, e.ClipRectangle.Height));*/
 
             // Отрисовка текста названия текущей игры
             StringFormat format = new();

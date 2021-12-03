@@ -1,0 +1,10 @@
+D:\sources\TrainBrainScoreBoard\bin\Release\net5.0-windows\publish\TrainBrainScoreBoard.exe
+D:\sources\TrainBrainScoreBoard\bin\Release\net5.0-windows\publish\TrainBrainScoreBoard.dll
+D:\sources\TrainBrainScoreBoard\bin\Release\net5.0-windows\publish\TrainBrainScoreBoard.deps.json
+D:\sources\TrainBrainScoreBoard\bin\Release\net5.0-windows\publish\TrainBrainScoreBoard.runtimeconfig.json
+D:\sources\TrainBrainScoreBoard\bin\Release\net5.0-windows\publish\TrainBrainScoreBoard.pdb
+D:\sources\TrainBrainScoreBoard\bin\Release\net5.0-windows\publish\ExcelDataReader.dll
+D:\sources\TrainBrainScoreBoard\bin\Release\net5.0-windows\publish\ExcelDataReader.DataSet.dll
+D:\sources\TrainBrainScoreBoard\bin\Release\net5.0-windows\publish\System.Runtime.CompilerServices.Unsafe.dll
+D:\sources\TrainBrainScoreBoard\bin\Release\net5.0-windows\publish\System.Text.Encoding.CodePages.dll
+D:\sources\TrainBrainScoreBoard\bin\Release\net5.0-windows\publish\runtimes\win\lib\netcoreapp3.1\System.Text.Encoding.CodePages.dll

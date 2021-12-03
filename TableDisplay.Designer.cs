@@ -50,6 +50,7 @@ namespace TrainBrainScoreBoard
             this.gradientPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gradientPanel.BackColor = System.Drawing.Color.Gray;
+            this.gradientPanel.BackgroundImage = global::TrainBrainScoreBoard.Properties.Resources.background;
             this.gradientPanel.Location = new System.Drawing.Point(0, 0);
             this.gradientPanel.Name = "gradientPanel";
             this.gradientPanel.Size = new System.Drawing.Size(827, 100);
