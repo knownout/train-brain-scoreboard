@@ -10,7 +10,7 @@ namespace TrainBrainScoreBoard
     {
         // ѕри изменении версии необходимо измен€ть ее тут, иначе
         // программа будет пытатьс€ обновитьс€ при каждом запуске
-        public static string CurrentProgrammVersion = "1.2.0";
+        public static string CurrentProgrammVersion = "1.2.1";
 
         public static string LatestProgrammVersion = "N/a";
         public static string UpdateDownloadURL = "null";
