@@ -43,7 +43,7 @@ namespace TrainBrainScoreBoard
              */
 
             KeyPress += (s, e) => { if (e.KeyChar == (char)Keys.Escape) Close(); };
-            FormClosing += (s, e) =>  { e.Cancel = true; teamShowIndex = 0; Hide(); };
+            FormClosing += (s, e) =>  { e.Cancel = true; teamShowIndex = 0; randomOrder_shownIndexes = new(); Hide(); };
             Shown += (e, s) => { teamShowIndex = 0; randomOrder_shownIndexes = new(); };
             ResizeEnd += (e, s) => redrawTableEntries();
 
@@ -86,7 +86,7 @@ namespace TrainBrainScoreBoard
         private void FormPaint(object sender, PaintEventArgs e)
         {
             // Общее кол-во строк таблицы
-            int totalRows = Storage.workTable.Rows.Count;
+            int totalRows = Storage.workTable.Rows.Count - 1;
 
             double rawRowHeight = (ClientRectangle.Height - gradientPanel.Height) / totalRows;
 
@@ -130,7 +130,8 @@ namespace TrainBrainScoreBoard
             for (int i = 0; i < relative[1]; i++)
                 e.Graphics.DrawString($"{i + 1}", font, whiteBrush, new RectangleF(relative[2] + (relative[0] * i), 0, relative[0], e.ClipRectangle.Height), format);
 
-            e.Graphics.DrawString("Очки", font, whiteBrush, new RectangleF(e.ClipRectangle.Width - relative[3] * 2, 0, relative[3], e.ClipRectangle.Height), format);
+            e.Graphics.DrawString("Баллы", font, whiteBrush, new RectangleF(e.ClipRectangle.Width - relative[3] * 3, 0, relative[3], e.ClipRectangle.Height), format);
+            e.Graphics.DrawString("Слжн", font, whiteBrush, new RectangleF(e.ClipRectangle.Width - relative[3] * 2, 0, relative[3], e.ClipRectangle.Height), format);
             e.Graphics.DrawString("Место", font, whiteBrush, new RectangleF(e.ClipRectangle.Width - relative[3], 0, relative[3], e.ClipRectangle.Height), format);
         }
 
@@ -155,7 +156,7 @@ namespace TrainBrainScoreBoard
             int teamsNameWidth = (int)Math.Round(freeSpace * 0.5);
 
             // Ширина для двух оставшихся строк
-            int placeWidth = (int)Math.Round(freeSpace * 0.25);
+            int placeWidth = (int)Math.Round(((freeSpace - teamsNameWidth) * 1.0) * 0.333);
 
             relativeWidth = new List<int>() { 
                 numericRowWidth,
@@ -192,11 +193,11 @@ namespace TrainBrainScoreBoard
                 case Keys.Up:
                     if(Storage.teamsShowInRandomOreder)
                     {
-                        if (randomOrder_shownIndexes.Count >= Storage.workTable.Rows.Count) break;
-                        int res = rand.Next(0, Storage.workTable.Rows.Count);
+                        if (randomOrder_shownIndexes.Count >= Storage.workTable.Rows.Count - 1) break;
+                        int res = rand.Next(0, Storage.workTable.Rows.Count - 1);
 
                         while (randomOrder_shownIndexes.Contains(res))
-                            res = rand.Next(0, Storage.workTable.Rows.Count);
+                            res = rand.Next(0, Storage.workTable.Rows.Count - 1);
 
                         DrawTableEntries(CreateGraphics(), relative, res);
                         randomOrder_shownIndexes.Add(res);
@@ -204,7 +205,7 @@ namespace TrainBrainScoreBoard
                         break;
                     }
 
-                    if (teamShowIndex == Storage.workTable.Rows.Count - 1) break;
+                    if (teamShowIndex == Storage.workTable.Rows.Count - 2) break;
                     DrawTableEntries(CreateGraphics(), relative, teamShowIndex);
                     teamShowIndex += 1;
 
@@ -238,7 +239,7 @@ namespace TrainBrainScoreBoard
          */
         private void DrawTableEntries (Graphics g, List<int> relative, int index)
         {
-            int totalTeams = Storage.workTable.Rows.Count - 1;
+            int totalTeams = Storage.workTable.Rows.Count - 2;
             Font font = Storage.defaultFont;
 
             int relativeTeamIndex = totalTeams - index;
@@ -272,6 +273,14 @@ namespace TrainBrainScoreBoard
             // Отрисовка очков
             g.DrawString(
                 Storage.workTable.Rows[relativeTeamIndex].ItemArray[Storage.workTable.Columns.Count - 1].ToString(),
+                new Font(font.FontFamily, font.Size, FontStyle.Regular), brush,
+                new Rectangle((Width - relative[3] * 3), yStartPoint, relative[3], tableHeaderPanel.Height),
+                format
+            );
+
+            g.DrawString(
+                Math.Round(double.Parse(Storage.workTable.Rows[relativeTeamIndex].ItemArray[Storage.workTable.Columns.Count - 1].ToString()) *
+                Storage.complexMultiplier, 2).ToString(),
                 new Font(font.FontFamily, font.Size, FontStyle.Regular), brush,
                 new Rectangle((Width - relative[3] * 2), yStartPoint, relative[3], tableHeaderPanel.Height),
                 format

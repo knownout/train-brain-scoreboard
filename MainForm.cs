@@ -106,7 +106,7 @@ namespace TrainBrainScoreBoard
                 numberSelect_totalTeams.Enabled = !checkBox_replaceNumberWithTeamName.Checked;
 
                 Storage.teamsCount = checkBox_replaceNumberWithTeamName.Checked
-                    ? (Storage.workTable.Rows.Count - 1)
+                    ? (Storage.workTable.Rows.Count - 2)
                     : (int)Math.Round(numberSelect_totalTeams.Value);
             };
 
@@ -191,12 +191,14 @@ namespace TrainBrainScoreBoard
 
                 // Добавление последней таблицы в хранилище
                 Storage.workTable = dataSet.Tables[dataSet.Tables.Count - 1];
-                float fontSize = (14.0f * 2) / ((Storage.workTable.Rows.Count - 1) / 4);
+                float fontSize = (14.0f * 2) / ((Storage.workTable.Rows.Count - 2) / 4);
 
                 Storage.defaultFont = new Font(Storage.defaultFont.FontFamily, fontSize > Storage.maxFontSize 
                     ? Storage.maxFontSize 
                     : (fontSize < Storage.minFontSize ? Storage.minFontSize : fontSize), 
                 Storage.defaultFont.Style);
+
+                Storage.complexMultiplier = double.Parse(Storage.workTable.Rows[Storage.workTable.Rows.Count - 1].ItemArray[0].ToString());
 
                 // Обновление кнопок и меток
                 button_openTableFile.Text = Storage.openFileButton_closeMode;
@@ -207,12 +209,12 @@ namespace TrainBrainScoreBoard
                 UpdateControlsState();
 
                 // Изменение меток
-                label_teamsCount.Text = (Storage.workTable.Rows.Count - 1).ToString();
+                label_teamsCount.Text = (Storage.workTable.Rows.Count - 2).ToString();
                 label_selectedTableGameName.Text = Storage.workTable.Rows[0].ItemArray[0].ToString();
                 label_selectedTableGameName.ForeColor = Color.DarkGreen;
 
                 // Изменение начального значения количества команд
-                numberSelect_totalTeams.Value = (Storage.workTable.Rows.Count - 1);
+                numberSelect_totalTeams.Value = (Storage.workTable.Rows.Count - 2);
 
                 // Завершения процедуры чтения из файла (файл остается открытым)
                 excelDataReader.Close();

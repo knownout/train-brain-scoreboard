@@ -81,6 +81,8 @@ namespace TrainBrainScoreBoard
         public static float minFontSize = 16.0f;
         public static float maxFontSize = 28.0f;
 
+        public static double complexMultiplier = 1.0;
+
         /*
          * Текстовые переменные (сообщения, названия кнопок/меток и т.д.)
          */
