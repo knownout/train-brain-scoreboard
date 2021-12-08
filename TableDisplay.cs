@@ -73,7 +73,7 @@ namespace TrainBrainScoreBoard
             e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             e.Graphics.DrawString(
                 Storage.workTable.Rows[0].ItemArray[0].ToString(),
-                new Font("Segoe UI", 28.0f, FontStyle.Bold),
+                new Font("Comfortaa", 28.0f, FontStyle.Bold),
                 new SolidBrush(Color.White),
                 new Rectangle(0, 0, e.ClipRectangle.Width, e.ClipRectangle.Height), 
                 format
@@ -98,8 +98,8 @@ namespace TrainBrainScoreBoard
             tableHeaderPanel.Height = rowHeight;
 
             // Создание кистей
-            SolidBrush darkTransparentBrush = new(Color.FromArgb(10, 10, 10, 10));
-            SolidBrush whiteBrush = new(Color.White);
+            SolidBrush darkTransparentBrush = new(Color.FromArgb(158, 190, 231));
+            SolidBrush whiteBrush = new(Color.FromArgb(208, 225, 255));
 
             // Отрисовка ячеек
             for(int i = (!Storage.showTableHeaders ? 0 : 1); i < totalRows; i++)
@@ -128,14 +128,14 @@ namespace TrainBrainScoreBoard
             format.LineAlignment = StringAlignment.Center;
             format.Alignment = StringAlignment.Center;
 
-            e.Graphics.DrawString("Команды", font, whiteBrush, new RectangleF(0, 0, relative[2], e.ClipRectangle.Height), format);
+            e.Graphics.DrawString("Команды", new Font("Comfortaa", font.Size + 10, FontStyle.Bold), whiteBrush, new RectangleF(0, 0, relative[2], e.ClipRectangle.Height), format);
 
             for (int i = 0; i < relative[1]; i++)
-                e.Graphics.DrawString($"{i + 1}", font, whiteBrush, new RectangleF(relative[2] + (relative[0] * i), 0, relative[0], e.ClipRectangle.Height), format);
+                e.Graphics.DrawString($"{i + 1}", new Font("Comfortaa", font.Size + 10, FontStyle.Bold), whiteBrush, new RectangleF(relative[2] + (relative[0] * i), 0, relative[0], e.ClipRectangle.Height), format);
 
-            e.Graphics.DrawString("Баллы", font, whiteBrush, new RectangleF(e.ClipRectangle.Width - relative[3] * 3, 0, relative[3], e.ClipRectangle.Height), format);
-            e.Graphics.DrawString("Слжн", font, whiteBrush, new RectangleF(e.ClipRectangle.Width - relative[3] * 2, 0, relative[3], e.ClipRectangle.Height), format);
-            e.Graphics.DrawString("Место", font, whiteBrush, new RectangleF(e.ClipRectangle.Width - relative[3], 0, relative[3], e.ClipRectangle.Height), format);
+            e.Graphics.DrawString("Баллы", new Font("Comfortaa", font.Size + 10, FontStyle.Bold), whiteBrush, new RectangleF(e.ClipRectangle.Width - relative[3] * 3, 0, relative[3], e.ClipRectangle.Height), format);
+            e.Graphics.DrawString("Слжн", new Font("Comfortaa", font.Size + 10, FontStyle.Bold), whiteBrush, new RectangleF(e.ClipRectangle.Width - relative[3] * 2, 0, relative[3], e.ClipRectangle.Height), format);
+            e.Graphics.DrawString("Место", new Font("Comfortaa", font.Size + 10, FontStyle.Bold), whiteBrush, new RectangleF(e.ClipRectangle.Width - relative[3], 0, relative[3], e.ClipRectangle.Height), format);
         }
 
         /**
@@ -267,8 +267,8 @@ namespace TrainBrainScoreBoard
 
             // Отрисовка названия команды
             g.DrawString(
-                Storage.workTable.Rows[relativeTeamIndex].ItemArray[0].ToString(), 
-                font, brush, new Rectangle(0, yStartPoint, relative[2], rowHeight), 
+                Storage.workTable.Rows[relativeTeamIndex].ItemArray[0].ToString(),
+                new Font("Comfortaa", font.Size + 5, FontStyle.Bold), brush, new Rectangle(0, yStartPoint, relative[2], tableHeaderPanel.Height),
                 format
             );
 
@@ -276,7 +276,7 @@ namespace TrainBrainScoreBoard
             for (int i = 0; i < Storage.workTable.Columns.Count - 2; i++)
             {
                 g.DrawString(
-                    Storage.workTable.Rows[relativeTeamIndex].ItemArray[1 + i].ToString(), new Font(font.FontFamily, font.Size, FontStyle.Regular),
+                    Storage.workTable.Rows[relativeTeamIndex].ItemArray[1 + i].ToString(), new Font("Comfortaa", font.Size + 5, FontStyle.Regular),
                     brush, new Rectangle(relative[2] + relative[0] * i, yStartPoint, relative[0], rowHeight), format
                 );
             }
@@ -284,7 +284,7 @@ namespace TrainBrainScoreBoard
             // Отрисовка очков
             g.DrawString(
                 Storage.workTable.Rows[relativeTeamIndex].ItemArray[Storage.workTable.Columns.Count - 1].ToString(),
-                new Font(font.FontFamily, font.Size, FontStyle.Regular), brush,
+                new Font("Comfortaa", font.Size + 5, FontStyle.Regular), brush,
                 new Rectangle((Width - relative[3] * 3), yStartPoint, relative[3], rowHeight),
                 format
             );
@@ -292,7 +292,7 @@ namespace TrainBrainScoreBoard
             g.DrawString(
                 Math.Round(double.Parse(Storage.workTable.Rows[relativeTeamIndex].ItemArray[Storage.workTable.Columns.Count - 1].ToString()) *
                 Storage.complexMultiplier, 2).ToString(),
-                new Font(font.FontFamily, font.Size, FontStyle.Regular), brush,
+                new Font("Comfortaa", font.Size + 5, FontStyle.Regular), brush,
                 new Rectangle((Width - relative[3] * 2), yStartPoint, relative[3], rowHeight),
                 format
             );
@@ -307,7 +307,7 @@ namespace TrainBrainScoreBoard
 
             // Отрисовка места
             g.DrawString(
-                relativeTeamIndex.ToString(), font, brush,
+                relativeTeamIndex.ToString(), new Font("Comfortaa", font.Size + 5, FontStyle.Bold), brush,
                 new Rectangle((Width - relative[3]), yStartPoint, relative[3], rowHeight),
                 format
             );

@@ -11,14 +11,14 @@
         "projectName": "TrainBrainScoreBoard",
         "projectPath": "E:\\Storage\\visual-studio-repos\\train-brain-scoreboard\\TrainBrainScoreBoard.csproj",
         "packagesPath": "C:\\Users\\knownOut\\.nuget\\packages\\",
-        "outputPath": "E:\\Storage\\visual-studio-repos\\train-brain-scoreboard\\obj\\",
+        "outputPath": "E:\\Storage\\visual-studio-repos\\train-brain-scoreboard\\obj\\publish\\win-x64\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\knownOut\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0-windows7.0"
+          "net5.0-windows"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -48,10 +48,6 @@
               "target": "Package",
               "version": "[3.6.0, )"
             },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.1, )"
-            },
             "System.Text.Encoding.CodePages": {
               "target": "Package",
               "version": "[6.0.0, )"
@@ -76,6 +72,11 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
         }
       }
     }

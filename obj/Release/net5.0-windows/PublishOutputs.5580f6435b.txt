@@ -1,0 +1,10 @@
+E:\Storage\visual-studio-repos\train-brain-scoreboard\bin\Release\net5.0-windows\publish\TrainBrainScoreBoard.exe
+E:\Storage\visual-studio-repos\train-brain-scoreboard\bin\Release\net5.0-windows\publish\TrainBrainScoreBoard.dll
+E:\Storage\visual-studio-repos\train-brain-scoreboard\bin\Release\net5.0-windows\publish\TrainBrainScoreBoard.deps.json
+E:\Storage\visual-studio-repos\train-brain-scoreboard\bin\Release\net5.0-windows\publish\TrainBrainScoreBoard.runtimeconfig.json
+E:\Storage\visual-studio-repos\train-brain-scoreboard\bin\Release\net5.0-windows\publish\TrainBrainScoreBoard.pdb
+E:\Storage\visual-studio-repos\train-brain-scoreboard\bin\Release\net5.0-windows\publish\ExcelDataReader.dll
+E:\Storage\visual-studio-repos\train-brain-scoreboard\bin\Release\net5.0-windows\publish\ExcelDataReader.DataSet.dll
+E:\Storage\visual-studio-repos\train-brain-scoreboard\bin\Release\net5.0-windows\publish\System.Runtime.CompilerServices.Unsafe.dll
+E:\Storage\visual-studio-repos\train-brain-scoreboard\bin\Release\net5.0-windows\publish\System.Text.Encoding.CodePages.dll
+E:\Storage\visual-studio-repos\train-brain-scoreboard\bin\Release\net5.0-windows\publish\runtimes\win\lib\netcoreapp3.1\System.Text.Encoding.CodePages.dll

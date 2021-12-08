@@ -39,8 +39,8 @@ namespace TrainBrainScoreBoard
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.numberLabel.BackColor = System.Drawing.Color.Transparent;
-            this.numberLabel.Font = new System.Drawing.Font("Segoe UI", 164F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.numberLabel.ForeColor = System.Drawing.Color.White;
+            this.numberLabel.Font = new System.Drawing.Font("Comfortaa", 164.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.numberLabel.ForeColor = System.Drawing.Color.Black;
             this.numberLabel.Location = new System.Drawing.Point(3, 96);
             this.numberLabel.Name = "numberLabel";
             this.numberLabel.Size = new System.Drawing.Size(882, 375);
@@ -54,8 +54,8 @@ namespace TrainBrainScoreBoard
             | System.Windows.Forms.AnchorStyles.Right)));
             this.winnerText.AutoEllipsis = true;
             this.winnerText.BackColor = System.Drawing.Color.Transparent;
-            this.winnerText.Font = new System.Drawing.Font("Segoe UI", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.winnerText.ForeColor = System.Drawing.Color.White;
+            this.winnerText.Font = new System.Drawing.Font("Comfortaa", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.winnerText.ForeColor = System.Drawing.Color.Black;
             this.winnerText.Location = new System.Drawing.Point(3, 55);
             this.winnerText.MaximumSize = new System.Drawing.Size(10000, 128);
             this.winnerText.Name = "winnerText";
@@ -73,6 +73,7 @@ namespace TrainBrainScoreBoard
             this.ClientSize = new System.Drawing.Size(881, 591);
             this.Controls.Add(this.winnerText);
             this.Controls.Add(this.numberLabel);
+            this.DoubleBuffered = true;
             this.MinimizeBox = false;
             this.Name = "WinnerSelect";
             this.ShowIcon = false;

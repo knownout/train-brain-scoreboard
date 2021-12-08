@@ -29,6 +29,7 @@ namespace TrainBrainScoreBoard
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableDisplay));
             this.tableHeaderPanel = new System.Windows.Forms.Panel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.gradientPanel = new System.Windows.Forms.Panel();
@@ -38,7 +39,7 @@ namespace TrainBrainScoreBoard
             // 
             this.tableHeaderPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableHeaderPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
+            this.tableHeaderPanel.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.tableHeaderPanel.Location = new System.Drawing.Point(0, 100);
             this.tableHeaderPanel.Name = "tableHeaderPanel";
             this.tableHeaderPanel.Size = new System.Drawing.Size(827, 43);
@@ -50,7 +51,7 @@ namespace TrainBrainScoreBoard
             this.gradientPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gradientPanel.BackColor = System.Drawing.Color.Gray;
-            this.gradientPanel.BackgroundImage = global::TrainBrainScoreBoard.Properties.Resources.background;
+            this.gradientPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gradientPanel.BackgroundImage")));
             this.gradientPanel.Location = new System.Drawing.Point(0, 0);
             this.gradientPanel.Name = "gradientPanel";
             this.gradientPanel.Size = new System.Drawing.Size(827, 100);
