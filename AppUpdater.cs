@@ -41,7 +41,7 @@ namespace TrainBrainScoreBoard
             wc.DownloadFileCompleted += (s, e) =>
             {
                 FileStream fs = new(zipFileName, FileMode.Open);
-                ZipArchive zip = new(fs, ZipArchiveMode.Read); ;
+                ZipArchive zip = new(fs, ZipArchiveMode.Read);
 
                 try
                 {
@@ -55,6 +55,7 @@ namespace TrainBrainScoreBoard
                     sw.Close();
 
                     Process.Start("update.bat");
+                    Application.ExitThread();
                     Application.Exit();
                 } catch (Exception) { }
                 zip.Dispose();
