@@ -62,7 +62,7 @@ namespace TrainBrainScoreBoard
         // Текущий рабочий лист документа
         public static System.Data.DataTable workTable = null;
 
-        public static bool showTableHeaders = false;
+        public static bool showTableHeaders = true;
 
         /* 
          * Глобальные параметры приложения

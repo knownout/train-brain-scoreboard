@@ -19,7 +19,6 @@ namespace TrainBrainScoreBoard
             buttons_randomSelectWinners.Enabled = Storage.controlsActiveState;
 
             checkBox_teamsSelectRandomOrder.Enabled = Storage.controlsActiveState;
-            checkBox_showHeader.Enabled = Storage.controlsActiveState;
 
             numberSelect_totalWinnersCount.Enabled = Storage.controlsActiveState;
             if (!checkBox_replaceNumberWithTeamName.Checked) numberSelect_totalTeams.Enabled = Storage.controlsActiveState;
@@ -110,9 +109,6 @@ namespace TrainBrainScoreBoard
                     ? (Storage.workTable.Rows.Count - 2)
                     : (int)Math.Round(numberSelect_totalTeams.Value);
             };
-
-            checkBox_showHeader.CheckedChanged += (s, e) =>
-                Storage.showTableHeaders = checkBox_showHeader.Checked;
 
             // Обработчики изменений данных для генератора случайных чисел
             numberSelect_totalTeams.ValueChanged += (s, e) => Storage.teamsCount = (int)Math.Round(numberSelect_totalTeams.Value);

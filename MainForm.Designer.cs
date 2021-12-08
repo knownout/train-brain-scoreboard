@@ -36,7 +36,6 @@ namespace TrainBrainScoreBoard
             this.label_static_teamsCountDescription = new System.Windows.Forms.Label();
             this.label_teamsCount = new System.Windows.Forms.Label();
             this.groupBox_controlsGroup = new System.Windows.Forms.GroupBox();
-            this.checkBox_showHeader = new System.Windows.Forms.CheckBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.checkBox_replaceNumberWithTeamName = new System.Windows.Forms.CheckBox();
             this.label_static_f11KeyInfo = new System.Windows.Forms.Label();
@@ -103,7 +102,6 @@ namespace TrainBrainScoreBoard
             // 
             // groupBox_controlsGroup
             // 
-            this.groupBox_controlsGroup.Controls.Add(this.checkBox_showHeader);
             this.groupBox_controlsGroup.Controls.Add(this.linkLabel1);
             this.groupBox_controlsGroup.Controls.Add(this.checkBox_replaceNumberWithTeamName);
             this.groupBox_controlsGroup.Controls.Add(this.label_static_f11KeyInfo);
@@ -119,25 +117,15 @@ namespace TrainBrainScoreBoard
             this.groupBox_controlsGroup.Controls.Add(this.button_showTeamsTable);
             this.groupBox_controlsGroup.Location = new System.Drawing.Point(12, 182);
             this.groupBox_controlsGroup.Name = "groupBox_controlsGroup";
-            this.groupBox_controlsGroup.Size = new System.Drawing.Size(441, 261);
+            this.groupBox_controlsGroup.Size = new System.Drawing.Size(441, 225);
             this.groupBox_controlsGroup.TabIndex = 5;
             this.groupBox_controlsGroup.TabStop = false;
             this.groupBox_controlsGroup.Text = "Управление";
             // 
-            // checkBox_showHeader
-            // 
-            this.checkBox_showHeader.AutoSize = true;
-            this.checkBox_showHeader.Location = new System.Drawing.Point(134, 63);
-            this.checkBox_showHeader.Name = "checkBox_showHeader";
-            this.checkBox_showHeader.Size = new System.Drawing.Size(247, 19);
-            this.checkBox_showHeader.TabIndex = 17;
-            this.checkBox_showHeader.Text = "Отображать заголовок таблицы команд";
-            this.checkBox_showHeader.UseVisualStyleBackColor = true;
-            // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(353, 240);
+            this.linkLabel1.Location = new System.Drawing.Point(353, 204);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(82, 15);
             this.linkLabel1.TabIndex = 12;
@@ -148,7 +136,7 @@ namespace TrainBrainScoreBoard
             // checkBox_replaceNumberWithTeamName
             // 
             this.checkBox_replaceNumberWithTeamName.AutoSize = true;
-            this.checkBox_replaceNumberWithTeamName.Location = new System.Drawing.Point(7, 236);
+            this.checkBox_replaceNumberWithTeamName.Location = new System.Drawing.Point(7, 200);
             this.checkBox_replaceNumberWithTeamName.Name = "checkBox_replaceNumberWithTeamName";
             this.checkBox_replaceNumberWithTeamName.Size = new System.Drawing.Size(240, 19);
             this.checkBox_replaceNumberWithTeamName.TabIndex = 16;
@@ -157,7 +145,7 @@ namespace TrainBrainScoreBoard
             // 
             // label_static_f11KeyInfo
             // 
-            this.label_static_f11KeyInfo.Location = new System.Drawing.Point(134, 126);
+            this.label_static_f11KeyInfo.Location = new System.Drawing.Point(134, 93);
             this.label_static_f11KeyInfo.Name = "label_static_f11KeyInfo";
             this.label_static_f11KeyInfo.Size = new System.Drawing.Size(301, 37);
             this.label_static_f11KeyInfo.TabIndex = 15;
@@ -165,7 +153,7 @@ namespace TrainBrainScoreBoard
             // 
             // label_static_escKeyInfo
             // 
-            this.label_static_escKeyInfo.Location = new System.Drawing.Point(134, 89);
+            this.label_static_escKeyInfo.Location = new System.Drawing.Point(134, 56);
             this.label_static_escKeyInfo.Name = "label_static_escKeyInfo";
             this.label_static_escKeyInfo.Size = new System.Drawing.Size(301, 37);
             this.label_static_escKeyInfo.TabIndex = 14;
@@ -175,7 +163,7 @@ namespace TrainBrainScoreBoard
             // 
             this.label_static_rwsNumberSelectorsDelimiter.AutoSize = true;
             this.label_static_rwsNumberSelectorsDelimiter.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label_static_rwsNumberSelectorsDelimiter.Location = new System.Drawing.Point(197, 210);
+            this.label_static_rwsNumberSelectorsDelimiter.Location = new System.Drawing.Point(197, 174);
             this.label_static_rwsNumberSelectorsDelimiter.Name = "label_static_rwsNumberSelectorsDelimiter";
             this.label_static_rwsNumberSelectorsDelimiter.Size = new System.Drawing.Size(31, 15);
             this.label_static_rwsNumberSelectorsDelimiter.TabIndex = 13;
@@ -184,7 +172,7 @@ namespace TrainBrainScoreBoard
             // label_static_totalWinnersCountLabel
             // 
             this.label_static_totalWinnersCountLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label_static_totalWinnersCountLabel.Location = new System.Drawing.Point(230, 174);
+            this.label_static_totalWinnersCountLabel.Location = new System.Drawing.Point(230, 138);
             this.label_static_totalWinnersCountLabel.Name = "label_static_totalWinnersCountLabel";
             this.label_static_totalWinnersCountLabel.Size = new System.Drawing.Size(85, 30);
             this.label_static_totalWinnersCountLabel.TabIndex = 12;
@@ -193,7 +181,7 @@ namespace TrainBrainScoreBoard
             // numberSelect_totalWinnersCount
             // 
             this.numberSelect_totalWinnersCount.Enabled = false;
-            this.numberSelect_totalWinnersCount.Location = new System.Drawing.Point(230, 207);
+            this.numberSelect_totalWinnersCount.Location = new System.Drawing.Point(230, 171);
             this.numberSelect_totalWinnersCount.Minimum = new decimal(new int[] {
             1,
             0,
@@ -212,7 +200,7 @@ namespace TrainBrainScoreBoard
             // label_static_totalTeamsListCountLabel
             // 
             this.label_static_totalTeamsListCountLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label_static_totalTeamsListCountLabel.Location = new System.Drawing.Point(134, 174);
+            this.label_static_totalTeamsListCountLabel.Location = new System.Drawing.Point(134, 138);
             this.label_static_totalTeamsListCountLabel.Name = "label_static_totalTeamsListCountLabel";
             this.label_static_totalTeamsListCountLabel.Size = new System.Drawing.Size(75, 30);
             this.label_static_totalTeamsListCountLabel.TabIndex = 10;
@@ -221,7 +209,7 @@ namespace TrainBrainScoreBoard
             // numberSelect_totalTeams
             // 
             this.numberSelect_totalTeams.Enabled = false;
-            this.numberSelect_totalTeams.Location = new System.Drawing.Point(134, 207);
+            this.numberSelect_totalTeams.Location = new System.Drawing.Point(134, 171);
             this.numberSelect_totalTeams.Minimum = new decimal(new int[] {
             1,
             0,
@@ -240,7 +228,7 @@ namespace TrainBrainScoreBoard
             // buttons_randomSelectWinners
             // 
             this.buttons_randomSelectWinners.Enabled = false;
-            this.buttons_randomSelectWinners.Location = new System.Drawing.Point(6, 190);
+            this.buttons_randomSelectWinners.Location = new System.Drawing.Point(6, 154);
             this.buttons_randomSelectWinners.Name = "buttons_randomSelectWinners";
             this.buttons_randomSelectWinners.Size = new System.Drawing.Size(122, 41);
             this.buttons_randomSelectWinners.TabIndex = 8;
@@ -342,7 +330,7 @@ namespace TrainBrainScoreBoard
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(468, 456);
+            this.ClientSize = new System.Drawing.Size(468, 417);
             this.Controls.Add(this.label_static_cpuUsageWarning);
             this.Controls.Add(this.checkBox_changeFullscreenFormsRealtimeUpdate);
             this.Controls.Add(this.checkBox_fullscreenFormsWindowedDisplay);
@@ -404,7 +392,6 @@ namespace TrainBrainScoreBoard
 
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.CheckBox checkBox_showHeader;
     }
 }
 
