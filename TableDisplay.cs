@@ -286,6 +286,14 @@ namespace TrainBrainScoreBoard
                 format
             );
 
+            Font placeFont = new(font, FontStyle.Bold);
+            SolidBrush bgBrush = new(Color.Red);
+
+            if (totalTeams - index <= 3)
+            {
+                g.FillRectangle(bgBrush, new Rectangle((Width - relative[3]), yStartPoint, relative[3], tableHeaderPanel.Height));
+            }
+
             // Отрисовка места
             g.DrawString(
                 relativeTeamIndex.ToString(), font, brush,

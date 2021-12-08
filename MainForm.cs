@@ -274,6 +274,13 @@ namespace TrainBrainScoreBoard
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+            Application.ExitThread();
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+            Application.ExitThread();
         }
     }
 }
