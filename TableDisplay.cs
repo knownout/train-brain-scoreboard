@@ -85,8 +85,9 @@ namespace TrainBrainScoreBoard
          */
         private void FormPaint(object sender, PaintEventArgs e)
         {
+            tableHeaderPanel.Visible = Storage.showTableHeaders;
             // Общее кол-во строк таблицы
-            int totalRows = Storage.workTable.Rows.Count - 1;
+            int totalRows = Storage.workTable.Rows.Count - (!Storage.showTableHeaders ? 2 : 1);
 
             double rawRowHeight = (ClientRectangle.Height - gradientPanel.Height) / totalRows;
 
@@ -101,7 +102,7 @@ namespace TrainBrainScoreBoard
             SolidBrush whiteBrush = new(Color.White);
 
             // Отрисовка ячеек
-            for(int i = 1; i < totalRows; i++)
+            for(int i = (!Storage.showTableHeaders ? 0 : 1); i < totalRows; i++)
             {
                 int relativeHeight = tableHeaderPanel.Height + gradientPanel.Height + (rowHeight * (i - 1));
                 int h = rowHeight;
@@ -116,6 +117,8 @@ namespace TrainBrainScoreBoard
          */
         private void TableHeaderPaint(object sender, PaintEventArgs e)
         {
+            if (!Storage.showTableHeaders) return;
+
             List<int> relative = getRelativeWidth(Width);
             Font font = Storage.defaultFont;
 
@@ -239,6 +242,14 @@ namespace TrainBrainScoreBoard
          */
         private void DrawTableEntries (Graphics g, List<int> relative, int index)
         {
+            // Общее кол-во строк таблицы
+            int totalRows = Storage.workTable.Rows.Count - (!Storage.showTableHeaders ? 2 : 1);
+
+            double rawRowHeight = (ClientRectangle.Height - gradientPanel.Height) / totalRows;
+
+            // Высота одной строки
+            int rowHeight = (int)Math.Round(rawRowHeight, MidpointRounding.AwayFromZero);
+
             int totalTeams = Storage.workTable.Rows.Count - 2;
             Font font = Storage.defaultFont;
 
@@ -251,13 +262,13 @@ namespace TrainBrainScoreBoard
             format.LineAlignment = StringAlignment.Center;
             format.Alignment = StringAlignment.Center;
 
-            int yStartPoint = (tableHeaderPanel.Height + gradientPanel.Height + tableHeaderPanel.Height * relativeTeamIndex) - tableHeaderPanel.Height;
+            int yStartPoint = (rowHeight + gradientPanel.Height + rowHeight * relativeTeamIndex) - rowHeight * (!Storage.showTableHeaders ? 2 : 1);
             SolidBrush brush = new SolidBrush(Color.Black);
 
             // Отрисовка названия команды
             g.DrawString(
                 Storage.workTable.Rows[relativeTeamIndex].ItemArray[0].ToString(), 
-                font, brush, new Rectangle(0, yStartPoint, relative[2], tableHeaderPanel.Height), 
+                font, brush, new Rectangle(0, yStartPoint, relative[2], rowHeight), 
                 format
             );
 
@@ -266,7 +277,7 @@ namespace TrainBrainScoreBoard
             {
                 g.DrawString(
                     Storage.workTable.Rows[relativeTeamIndex].ItemArray[1 + i].ToString(), new Font(font.FontFamily, font.Size, FontStyle.Regular),
-                    brush, new Rectangle(relative[2] + relative[0] * i, yStartPoint, relative[0], tableHeaderPanel.Height), format
+                    brush, new Rectangle(relative[2] + relative[0] * i, yStartPoint, relative[0], rowHeight), format
                 );
             }
 
@@ -274,7 +285,7 @@ namespace TrainBrainScoreBoard
             g.DrawString(
                 Storage.workTable.Rows[relativeTeamIndex].ItemArray[Storage.workTable.Columns.Count - 1].ToString(),
                 new Font(font.FontFamily, font.Size, FontStyle.Regular), brush,
-                new Rectangle((Width - relative[3] * 3), yStartPoint, relative[3], tableHeaderPanel.Height),
+                new Rectangle((Width - relative[3] * 3), yStartPoint, relative[3], rowHeight),
                 format
             );
 
@@ -282,7 +293,7 @@ namespace TrainBrainScoreBoard
                 Math.Round(double.Parse(Storage.workTable.Rows[relativeTeamIndex].ItemArray[Storage.workTable.Columns.Count - 1].ToString()) *
                 Storage.complexMultiplier, 2).ToString(),
                 new Font(font.FontFamily, font.Size, FontStyle.Regular), brush,
-                new Rectangle((Width - relative[3] * 2), yStartPoint, relative[3], tableHeaderPanel.Height),
+                new Rectangle((Width - relative[3] * 2), yStartPoint, relative[3], rowHeight),
                 format
             );
 
@@ -291,13 +302,13 @@ namespace TrainBrainScoreBoard
 
             if (totalTeams - index <= 3)
             {
-                g.FillRectangle(bgBrush, new Rectangle((Width - relative[3]), yStartPoint, relative[3], tableHeaderPanel.Height));
+                g.FillRectangle(bgBrush, new Rectangle((Width - relative[3]), yStartPoint, relative[3], rowHeight));
             }
 
             // Отрисовка места
             g.DrawString(
                 relativeTeamIndex.ToString(), font, brush,
-                new Rectangle((Width - relative[3]), yStartPoint, relative[3], tableHeaderPanel.Height),
+                new Rectangle((Width - relative[3]), yStartPoint, relative[3], rowHeight),
                 format
             );
         }
