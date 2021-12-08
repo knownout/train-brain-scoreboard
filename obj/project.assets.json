@@ -212,20 +212,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\knownOut\\.nuget\\packages\\": {}
+    "C:\\Users\\HomerOff\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Storage\\visual-studio-repos\\train-brain-scoreboard\\TrainBrainScoreBoard.csproj",
+      "projectUniqueName": "C:\\Users\\HomerOff\\Desktop\\qqqqq\\TrainBrainScoreBoard.csproj",
       "projectName": "TrainBrainScoreBoard",
-      "projectPath": "E:\\Storage\\visual-studio-repos\\train-brain-scoreboard\\TrainBrainScoreBoard.csproj",
-      "packagesPath": "C:\\Users\\knownOut\\.nuget\\packages\\",
-      "outputPath": "E:\\Storage\\visual-studio-repos\\train-brain-scoreboard\\obj\\",
+      "projectPath": "C:\\Users\\HomerOff\\Desktop\\qqqqq\\TrainBrainScoreBoard.csproj",
+      "packagesPath": "C:\\Users\\HomerOff\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\HomerOff\\Desktop\\qqqqq\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\knownOut\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\HomerOff\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0-windows7.0"
@@ -285,7 +293,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
