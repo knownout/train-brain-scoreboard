@@ -219,11 +219,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HomerOff\\Desktop\\qqqqq\\TrainBrainScoreBoard.csproj",
+      "projectUniqueName": "C:\\Users\\HomerOff\\source\\repos\\HomerOff\\train-brain-scoreboard\\TrainBrainScoreBoard.csproj",
       "projectName": "TrainBrainScoreBoard",
-      "projectPath": "C:\\Users\\HomerOff\\Desktop\\qqqqq\\TrainBrainScoreBoard.csproj",
+      "projectPath": "C:\\Users\\HomerOff\\source\\repos\\HomerOff\\train-brain-scoreboard\\TrainBrainScoreBoard.csproj",
       "packagesPath": "C:\\Users\\HomerOff\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HomerOff\\Desktop\\qqqqq\\obj\\",
+      "outputPath": "C:\\Users\\HomerOff\\source\\repos\\HomerOff\\train-brain-scoreboard\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

@@ -210,6 +210,11 @@ namespace TrainBrainScoreBoard
             // 
             this.numberSelect_totalTeams.Enabled = false;
             this.numberSelect_totalTeams.Location = new System.Drawing.Point(134, 171);
+            this.numberSelect_totalTeams.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
             this.numberSelect_totalTeams.Minimum = new decimal(new int[] {
             1,
             0,
