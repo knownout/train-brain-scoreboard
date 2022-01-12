@@ -73,7 +73,7 @@ namespace TrainBrainScoreBoard
             e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             e.Graphics.DrawString(
                 Storage.workTable.Rows[0].ItemArray[0].ToString(),
-                new Font("Comfortaa", 28.0f, FontStyle.Bold),
+                new Font("Comfortaa", 40.0f, FontStyle.Bold),
                 new SolidBrush(Color.White),
                 new Rectangle(0, 0, e.ClipRectangle.Width, e.ClipRectangle.Height), 
                 format
@@ -262,14 +262,18 @@ namespace TrainBrainScoreBoard
             format.LineAlignment = StringAlignment.Center;
             format.Alignment = StringAlignment.Center;
 
+            StringFormat formatTeams = new StringFormat();
+            formatTeams.LineAlignment = StringAlignment.Center;
+            formatTeams.Alignment = StringAlignment.Near;
+
             int yStartPoint = (rowHeight + gradientPanel.Height + rowHeight * relativeTeamIndex) - rowHeight * (!Storage.showTableHeaders ? 2 : 1);
             SolidBrush brush = new SolidBrush(Color.Black);
 
             // Отрисовка названия команды
             g.DrawString(
                 Storage.workTable.Rows[relativeTeamIndex].ItemArray[0].ToString(),
-                new Font("Comfortaa", font.Size + 5, FontStyle.Bold), brush, new Rectangle(0, yStartPoint, relative[2], tableHeaderPanel.Height),
-                format
+                new Font("Comfortaa", font.Size + 15, FontStyle.Bold), brush, new Rectangle(20, yStartPoint, relative[2], tableHeaderPanel.Height),
+                formatTeams
             );
 
             // Отрисовка числовых значений
@@ -291,7 +295,7 @@ namespace TrainBrainScoreBoard
 
             g.DrawString(
                 Math.Round(double.Parse(Storage.workTable.Rows[relativeTeamIndex].ItemArray[Storage.workTable.Columns.Count - 1].ToString()) *
-                Storage.complexMultiplier, 2).ToString(),
+                Storage.complexMultiplier, 1).ToString(),
                 new Font("Comfortaa", font.Size + 5, FontStyle.Regular), brush,
                 new Rectangle((Width - relative[3] * 2), yStartPoint, relative[3], rowHeight),
                 format

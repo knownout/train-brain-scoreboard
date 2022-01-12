@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "o/trDriKg+CQd0eQSqcdz/2R0azEiu7fLZReRpFkcMkPqSSlqqPao7aX9QVfhoILU6f/BvYhZp2Zscb+XASvdA==",
+  "dgSpecHash": "1pQvrVDPdtHmvTw+J3wRI+RanohIqu7ZBA4pdgVREZ7xliiM89GE5nRfn8RZv1kwsids9jX688vdscS/P6A0Xg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HomerOff\\Desktop\\qqqqq\\TrainBrainScoreBoard.csproj",
+  "projectFilePath": "C:\\Users\\HomerOff\\source\\repos\\HomerOff\\train-brain-scoreboard\\TrainBrainScoreBoard.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HomerOff\\.nuget\\packages\\exceldatareader\\3.6.0\\exceldatareader.3.6.0.nupkg.sha512",
     "C:\\Users\\HomerOff\\.nuget\\packages\\exceldatareader.dataset\\3.6.0\\exceldatareader.dataset.3.6.0.nupkg.sha512",
